@@ -1,0 +1,35 @@
+Project ideas and brainstorming 
+
+-The difficult of a game is an important thing, we need to know what the user wants
+    before giving him a rated list
+    ->Problem, the given dataset hasn't the difficult rating metric, might need a new 
+    dataset 
+    With the new dataset might be intresting understend the correlation between difficult
+    and rating 
+    Are more difficult games raked higher compared to lower difficult games?
+    I can also create an user variable asking if he preffers easy medium or difficult games 
+    and then create a list according to his liking 
+
+-We can check the user, not every user is competent, they are not expert, chechking who
+    gives some ratings might be a smart move 
+    ->The given dataset has only a row for a game, not a row for a vote, so it's very
+    unlikely that this idea can be used 
+
+-We have only the avrage, the geek score (A bayes avrage), the amount of reviews and 
+    the rank of the game 
+    With this data we can understand how a rank is connected with the avrage and The
+    geek score 
+
+Thing do to 
+-Import Data 
+-Polish Data 
+1-Is BBG biased? look at the official ranking ad let's see if difficult games are rated 
+    higher, same thing for player year ecc
+2-User ranking
+-Cut the dataset according to user liking
+    Ex  min/max players
+        Difficulty 
+        Pubblication year 
+        ecc ecc 
+-Build a coherent ranking 
+-Give the coherent ranking in a aestethic way 
