@@ -2,6 +2,9 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import models
+import tkinter as tk
+from tkinter import ttk, messagebox
 import os                         
    #per lavorare sui percorsi di file 
 
@@ -43,28 +46,41 @@ correlation = C_data["BGG Rank"].corr(C_data["Complexity Average"])
 print(f"Rank-Complexity correlation: {correlation:.2f}") #,2f=float con due cifre decimali
 
 correlation = C_data["BGG Rank"].corr(C_data["Users Rated"])
-print(f"Rank-Users rated correlation: {correlation:.2f}") #,2f=float con due cifre decimali
+print(f"Rank-Users rated correlation: {correlation:.2f}")
 
 correlation = C_data["BGG Rank"].corr(C_data["Play Time"])
-print(f"Rank-Playtime correlation: {correlation:.2f}") #,2f=float con due cifre decimali
-
+print(f"Rank-Playtime correlation: {correlation:.2f}") 
 correlation = C_data["BGG Rank"].corr(C_data["Year Published"])
-print(f"Rank-year of pubblication correlation: {correlation:.2f}") #,2f=float con due cifre decimali
+print(f"Rank-year of pubblication correlation: {correlation:.2f}")
 
 correlation = C_data["BGG Rank"].corr(C_data["Max Players"])
-print(f"Rank-Max players correlation: {correlation:.2f}") #,2f=float con due cifre decimali
+print(f"Rank-Max players correlation: {correlation:.2f}")
 
 correlation = C_data["BGG Rank"].corr(C_data["Min Players"])
-print(f"Rank-Min players correlation: {correlation:.2f}") #,2f=float con due cifre decimali
+print(f"Rank-Min players correlation: {correlation:.2f}") 
 
-# correlation = C_data["BGG Rank"].corr(C_data["Rating Average"])
-# print(f"Rank-Rating correlation: {correlation:.2f}") #,2f=float con due cifre decimali
- #Le analisi sulla correlazione non hanno rilevato nessuna traccia di correlazioni significative,
+correlation = C_data["BGG Rank"].corr(C_data["Rating Average"])
+print(f"Rank-Rating correlation: {correlation:.2f}") 
 # solo una leggera correlazione tra difficoltà e rating, quella con users rated e rating sono ovvie
 
-plt.scatter(C_data["Rating Average"], C_data["BGG Rank"], alpha=0.5)
-plt.title("Anno di pubblicazione vs Rank")
-plt.xlabel("Anno di pubblicazione")
-plt.ylabel("Rank")
-plt.gca().invert_yaxis()
+#TABELLE VD MEGLIO POI
+plt.scatter(C_data["Rating Average"], C_data["BGG Rank"], alpha=0.6)
+plt.title("Rank vs Rating Average")
+plt.xlabel("Rating Avrage")
+plt.ylabel("Rank (Lower = better)")
+plt.gca().invert_yaxis()  #to show better ranks in the top part 
+plt.grid(True, linestyle='--', alpha=0.5) #aggiunge la griglia al grafico 
 plt.show()
+
+
+plt.scatter(C_data["Rating Average"], C_data["BGG Rank"], alpha=0.6)
+plt.title("Rank vs Rating Average")
+plt.xlabel("Rating Avrage")
+plt.ylabel("Rank (Lower = better)")
+plt.gca().invert_yaxis()  #to show better ranks in the top part 
+plt.grid(True, linestyle='--', alpha=0.5) #aggiunge la griglia al grafico 
+plt.show()
+
+#User choice 
+
+
