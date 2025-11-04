@@ -2,12 +2,11 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import models
+from models import choose_option
 import tkinter as tk
 from tkinter import ttk, messagebox
 import os                         
    #per lavorare sui percorsi di file 
-
 base_path = os.path.dirname(__file__) 
 #__file__ it's a special variable that contains the current script path 
 #os.path.dirname takes only the folder without the file name 
@@ -82,5 +81,79 @@ plt.grid(True, linestyle='--', alpha=0.5) #aggiunge la griglia al grafico
 plt.show()
 
 #User choice 
+#we want to have a userbased ranking with the following parameters:
+#-year published 
+#-Min players 
+#-Max Players
+#-complexity 
 
+#asking for variables 
+
+years=["after 1980","after 1990","after 2000", "after 2010","every Year"]
+chosen_year=choose_option(years)
+min_players=["at least 1 min player","at least 2 min players","at least 3 min players",
+             "at least 4 min players","any min players"]
+chosen_min_players=choose_option(min_players)
+max_players=["1 max player","2 max players","3 max players","4 max players","5 max players",
+             "6 max players","7 max players","8 max players","9 max players","10 max players",
+             "any max players"]
+chosen_max_players=choose_option(max_players)
+complexity=["easy", "medium","hard", "every difficulty"]
+chosen_complexity=choose_option(complexity)
+
+if chosen_year == "after 1980":
+   C_data=C_data[C_data["Year Published"]>= 1980]
+elif chosen_year == "after 1990":
+   C_data=C_data[C_data["Year Published"]>= 1990]
+elif chosen_year == "after 2000":
+   C_data=C_data[C_data["Year Published"]>= 2000]
+elif chosen_year == "after 2010":
+   C_data=C_data[C_data["Year Published"]>= 2010]
+elif chosen_year == "every year":
+   pass 
+
+if chosen_min_players == "at least 1 min player":
+   C_data=C_data[C_data["Min Players"]>= 1]
+elif chosen_min_players == "at least 2 min players":
+   C_data=C_data[C_data["Min Players"]>= 2]
+elif chosen_min_players == "at least 3 min players":
+   C_data=C_data[C_data["Min Players"]>= 3]
+elif chosen_min_players == "at least 4 min players":
+   C_data=C_data[C_data["Min Players"]>= 4]
+elif chosen_min_players == "any min players":
+    pass
+
+if chosen_max_players == "1 max player":
+   C_data=C_data[C_data["Max Players"]<= 1]
+elif chosen_max_players == "2 max players":
+   C_data=C_data[C_data["Max Players"]<= 2]
+elif chosen_max_players == "3 max players":
+   C_data=C_data[C_data["Max Players"]<= 3]
+elif chosen_max_players == "4 max players":
+   C_data=C_data[C_data["Max Players"]<= 4]
+elif chosen_max_players == "5 max players":
+   C_data=C_data[C_data["Max Players"]<= 5]
+elif chosen_max_players == "6 max players":
+   C_data=C_data[C_data["Max Players"]<= 6]
+elif chosen_max_players == "7 max players":
+   C_data=C_data[C_data["Max Players"]<= 7]
+elif chosen_max_players == "8 max players":
+   C_data=C_data[C_data["Max Players"]<= 8]
+elif chosen_max_players == "9 max players":
+   C_data=C_data[C_data["Max Players"]<= 9]
+elif chosen_max_players == "10 max players":
+   C_data=C_data[C_data["Max Players"]<= 10]
+elif chosen_max_players == "any max players":
+    pass
+
+if chosen_complexity == "easy":
+   C_data=C_data[C_data["Complexity Average"] < 2]
+elif chosen_complexity == "medium":
+   C_data=C_data[(C_data["Complexity Average"] > 1.75) & (C_data["Complexity Average"] < 3.50)]
+elif chosen_complexity == "hard":
+   C_data=C_data[C_data["Complexity Average"] > 3.25]
+elif chosen_complexity == "every difficulty":
+    pass
+
+#
 
