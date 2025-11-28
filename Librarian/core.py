@@ -63,13 +63,63 @@ print(f"Rank-Rating correlation: {correlation:.2f}")
 # solo una leggera correlazione tra difficoltà e rating, quella con users rated e rating sono ovvie
 
 #TABELLE VD MEGLIO POI
-plt.scatter(C_data["Rating Average"], C_data["BGG Rank"], alpha=0.6)
-plt.title("Rank vs Rating Average")
-plt.xlabel("Rating Avrage")
-plt.ylabel("Rank (Lower = better)")
-plt.gca().invert_yaxis()  #to show better ranks in the top part 
-plt.grid(True, linestyle='--', alpha=0.5) #aggiunge la griglia al grafico 
+
+plt.figure(figsize=(8, 6))
+
+plt.scatter(
+    C_data["Rating Average"],
+    C_data["Complexity Average"],
+    alpha=0.7,
+    s=10,   # point dimension     
+)
+
+plt.title("Rating vs Complexity", fontsize=16, pad=15)
+plt.xlabel("Rating Average", fontsize=12)
+plt.ylabel("Complexity Average", fontsize=12)
+
+
+plt.grid(  #graphic grid  
+    True,
+    linestyle='--',
+    alpha=0.4
+)
+
+plt.style.use("seaborn-v0_8-whitegrid") #applaying a cleaner style 
+
+plt.tight_layout()
 plt.show()
+
+
+plt.figure(figsize=(8, 6))
+
+plt.scatter(
+    C_data["Rating Average"],
+    C_data["BGG Rank"],
+    alpha=0.7,
+    s=10,               
+)
+
+plt.title("Rating vs Rank", fontsize=16, pad=15)
+plt.xlabel("Rating Average", fontsize=12)
+plt.ylabel("Rank", fontsize=12)
+
+plt.gca().invert_yaxis()  
+
+plt.grid(
+    True,
+    linestyle='--',
+    alpha=0.4
+)
+
+plt.style.use("seaborn-v0_8-whitegrid")
+
+plt.tight_layout()
+plt.show()
+
+
+
+
+
 
 
 plt.scatter(C_data["Rating Average"], C_data["BGG Rank"], alpha=0.6)
@@ -155,5 +205,22 @@ elif chosen_complexity == "hard":
 elif chosen_complexity == "every difficulty":
     pass
 
-#
+#Bayesian mean of the chopped dataset 
+
+#C parameter in bayesian mean 
+C = C_data["Rating Average"].mean()
+
+#m parameter in bayesian mean 
+m = C_data["Users Rated"].quantile(0.50)
+
+# 3. Calcola la media bayesiana per ogni gioco
+C_data["bayes_rating"] = (
+    (C_data["Users Rated"] / (C_data["Users Rated"] + m)) * C_data["Rating Average"] +
+    (m / (C_data["Users Rated"] + m)) * C
+)
+
+#New order
+C_data_sorted = C_data.sort_values(by="bayes_rating", ascending=False)
+
+print(C_data_sorted.head)
 
