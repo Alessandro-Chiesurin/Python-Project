@@ -62,7 +62,6 @@ correlation = C_data["BGG Rank"].corr(C_data["Rating Average"])
 print(f"Rank-Rating correlation: {correlation:.2f}") 
 # solo una leggera correlazione tra difficoltà e rating, quella con users rated e rating sono ovvie
 
-#TABELLE VD MEGLIO POI
 
 plt.figure(figsize=(8, 6))
 
@@ -89,7 +88,7 @@ plt.style.use("seaborn-v0_8-whitegrid") #applaying a cleaner style
 plt.tight_layout()
 plt.show()
 
-
+#2
 plt.figure(figsize=(8, 6))
 
 plt.scatter(
@@ -117,18 +116,6 @@ plt.tight_layout()
 plt.show()
 
 
-
-
-
-
-
-plt.scatter(C_data["Rating Average"], C_data["BGG Rank"], alpha=0.6)
-plt.title("Rank vs Rating Average")
-plt.xlabel("Rating Avrage")
-plt.ylabel("Rank (Lower = better)")
-plt.gca().invert_yaxis()  #to show better ranks in the top part 
-plt.grid(True, linestyle='--', alpha=0.5) #aggiunge la griglia al grafico 
-plt.show()
 
 #User choice 
 #we want to have a userbased ranking with the following parameters:
@@ -214,13 +201,13 @@ C = C_data["Rating Average"].mean()
 m = C_data["Users Rated"].quantile(0.50)
 
 # 3. Calcola la media bayesiana per ogni gioco
-C_data["bayes_rating"] = (
+C_data["Bayes Rating"] = (
     (C_data["Users Rated"] / (C_data["Users Rated"] + m)) * C_data["Rating Average"] +
     (m / (C_data["Users Rated"] + m)) * C
 )
 
 #New order
-C_data_sorted = C_data.sort_values(by="bayes_rating", ascending=False)
+C_data_sorted = C_data.sort_values(by="Bayes Rating", ascending=False)
 
 print(C_data_sorted.head)
 
