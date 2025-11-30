@@ -11,7 +11,7 @@ st.write(C_data_sorted)
 fixed_column = "Bayes Rating"   
 
 st.title("Correlation")
-st.text("Check che correlation with any parameter!")
+st.text("Check che correlation with any parameter")
 st.write(f"Fixed Column: **{fixed_column}**")
 
 #User choice
@@ -31,4 +31,4 @@ if selected_column:
         label=f"Correlation between {fixed_column} e {selected_column}",
         value=f"{correlation:.3f}"
     )
-st.text("correlation value meaning:\n1 perfect negative correlation\n1 perfect positive correlation\n0 no correlation")
+st.text("correlation value meaning:\n-1 perfect negative correlation\n-1 perfect positive correlation\n-0 no correlation")
