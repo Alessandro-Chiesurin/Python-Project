@@ -42,7 +42,7 @@ C_data
 
 #--ANALYSIS PART--
 correlation = C_data["BGG Rank"].corr(C_data["Complexity Average"])
-print(f"Rank-Complexity correlation: {correlation:.2f}") #,2f=float con due cifre decimali
+print(f"Rank-Complexity correlation: {correlation:.2f}") #2f = floating with 2 decimals
 
 correlation = C_data["BGG Rank"].corr(C_data["Users Rated"])
 print(f"Rank-Users rated correlation: {correlation:.2f}")
