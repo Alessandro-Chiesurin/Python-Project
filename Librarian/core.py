@@ -17,10 +17,6 @@ file_path = os.path.join(base_path, "../data/BGG_Data_Set.xlsx")
 data = pd.read_excel(file_path)
 #read the excel file and upload in a dataframe 
 
-print(data.head())
-
-print(data.columns)
-
 #data cleaning 
 #eliminating usless collcolumns for the analysis 
 C_data = data.drop(columns=["Owned Users"])
@@ -60,7 +56,6 @@ print(f"Rank-Min players correlation: {correlation:.2f}")
 
 correlation = C_data["BGG Rank"].corr(C_data["Rating Average"])
 print(f"Rank-Rating correlation: {correlation:.2f}") 
-# solo una leggera correlazione tra difficoltà e rating, quella con users rated e rating sono ovvie
 
 
 plt.figure(figsize=(8, 6))
@@ -192,18 +187,14 @@ elif chosen_complexity == "hard":
 elif chosen_complexity == "every difficulty":
     pass
 
-#Bayesian mean of the chopped dataset 
 
-#C parameter in bayesian mean 
-C = C_data["Rating Average"].mean()
+m = C_data["Rating Average"].mean()
 
-#m parameter in bayesian mean 
-m = C_data["Users Rated"].quantile(0.50)
+C = C_data["Users Rated"].median() 
 
-# 3. Calcola la media bayesiana per ogni gioco
 C_data["Bayes Rating"] = (
-    (C_data["Users Rated"] / (C_data["Users Rated"] + m)) * C_data["Rating Average"] +
-    (m / (C_data["Users Rated"] + m)) * C
+    (C_data["Users Rated"] / (C_data["Users Rated"] + C)) * C_data["Rating Average"] +
+    (C / (C_data["Users Rated"] + C)) * m
 )
 
 #New order
