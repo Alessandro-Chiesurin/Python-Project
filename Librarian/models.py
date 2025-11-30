@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
+#function with a list in input that returns a value of that string 
 def choose_option(options):
     root = tk.Tk()  # creates the window 
     root.title("Choose an option")

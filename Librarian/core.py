@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from models import choose_option
 import tkinter as tk
 from tkinter import ttk, messagebox
-import os                         
-   #per lavorare sui percorsi di file 
+import os           #to work on file directory               
+   
 base_path = os.path.dirname(__file__) 
 #__file__ it's a special variable that contains the current script path 
 #os.path.dirname takes only the folder without the file name 
@@ -133,6 +133,7 @@ chosen_max_players=choose_option(max_players)
 complexity=["easy", "medium","hard", "every difficulty"]
 chosen_complexity=choose_option(complexity)
 
+#cut the dataset 
 if chosen_year == "after 1980":
    C_data=C_data[C_data["Year Published"]>= 1980]
 elif chosen_year == "after 1990":
@@ -187,7 +188,7 @@ elif chosen_complexity == "hard":
 elif chosen_complexity == "every difficulty":
     pass
 
-
+#bayesian mean 
 m = C_data["Rating Average"].mean()
 
 C = C_data["Users Rated"].median() 
